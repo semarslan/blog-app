@@ -6,6 +6,8 @@ import BlogList from "../components/Blog/BlogList";
 import BlogDetails from "../components/Blog/BlogDetails";
 import Contact from "../components/Home/Contact";
 import NotFound from "../components/Home/NotFound";
+import AddBlog from "../components/Blog/AddBlog";
+import EditBlog from "../components/Blog/EditBlog";
 
 const AppRouter = () => {
     return (
@@ -15,6 +17,8 @@ const AppRouter = () => {
                 <Switch>
                     <Route path={"/"} component={Home} exact/>
                     <Route path={"/blogs"} component={BlogList} exact/>
+                    <Route path={"/create"} component={AddBlog}/>
+                    <Route path={"/edit/:id"} component={EditBlog}/>
                     <Route path={"/blogs/:id"} component={BlogDetails}/>
                     <Route path={"/contact"} component={Contact}/>
                     <Route component={NotFound}/>

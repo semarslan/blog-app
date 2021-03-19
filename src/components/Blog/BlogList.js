@@ -1,14 +1,22 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import BlogListItem from "./BlogListItem";
 
-const BlogList = () => {
+const BlogList = (props) => {
     return (
-        <div>
-            <h1>Blog List</h1>
-            <Link to={"/blogs/1"}>Blog 1</Link>
-            <Link to={"/blogs/2"}>Blog 2</Link>
-        </div>
+        <ul>
+            {props.blogs.map(blog => {
+                return <BlogListItem key={blog.id}{...blog}/>
+            })}
+        </ul>
     )
 }
 
-export default BlogList;
+const mapStateToProps = (state) => {
+    return {
+        blogs: state.blogs
+    }
+}
+
+// Higher order component (HOC)
+export default connect(mapStateToProps)(BlogList);

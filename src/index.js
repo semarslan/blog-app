@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import './index.css';
 import './App.css';
 import reportWebVitals from './reportWebVitals';
@@ -10,12 +11,14 @@ import {addBlog, editBlog, removeBlog} from "./actions/blogs";
 
 const store = configureStore();
 
-store.subscribe(() => {
-    console.log(store.getState())
-})
+// store.subscribe(() => {
+//     console.log(store.getState())
+// })
 
 const blog1 = store.dispatch(addBlog({title: 'dffd', description: 'dfsdf', dateAdded: 0}))
 const blog2 = store.dispatch(addBlog({title: 'dffd2', description: 'dfsdf2', dateAdded: Date.now()}))
+store.dispatch(addBlog({title: 'dffd3', description: 'dfsdf3', dateAdded: Date.now()}))
+store.dispatch(addBlog({title: '4', description: '4', dateAdded: Date.now()}))
 
 
 store.dispatch(removeBlog({id: blog1.blog.id}))
@@ -24,7 +27,9 @@ store.dispatch(editBlog(blog2.blog.id, {title: 'update blog 2'}))
 
 
 ReactDOM.render(
-    <AppRouter/>,
+    <Provider store={store}>
+        <AppRouter/>
+    </Provider>,
     document.getElementById('root')
 );
 
