@@ -4,17 +4,22 @@ import './index.css';
 import './App.css';
 import reportWebVitals from './reportWebVitals';
 import AppRouter from "./routers/AppRouter";
+import configureStore from "./store/configureStore";
+import {addBlog, editBlog, removeBlog} from "./actions/blogs";
 
-import {createStore} from "redux";
+
+const store = configureStore();
+
+store.subscribe(() => {
+    console.log(store.getState())
+})
+
+const blog1 = store.dispatch(addBlog({title: 'dffd', description: 'dfsdf', dateAdded: 0}))
+const blog2 = store.dispatch(addBlog({title: 'dffd2', description: 'dfsdf2', dateAdded: Date.now()}))
 
 
-const initialState = {
-    count: 0
-}
-const store = createStore((state=initialState) => {
-    return state;
-});
-
+store.dispatch(removeBlog({id: blog1.blog.id}))
+store.dispatch(editBlog(blog2.blog.id, {title: 'update blog 2'}))
 
 
 
