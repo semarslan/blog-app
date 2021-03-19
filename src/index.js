@@ -11,9 +11,9 @@ import {addBlog, editBlog, removeBlog} from "./actions/blogs";
 
 const store = configureStore();
 
-store.subscribe(() => {
-    console.log(store.getState())
-})
+// store.subscribe(() => {
+//     console.log(store.getState())
+// })
 
 const blog1 = store.dispatch(addBlog({title: 'dffd', description: 'dfsdf', dateAdded: 0}))
 const blog2 = store.dispatch(addBlog({title: 'dffd2', description: 'dfsdf2', dateAdded: Date.now()}))
